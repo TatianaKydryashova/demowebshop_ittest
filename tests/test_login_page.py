@@ -28,5 +28,7 @@ class TestLoginUserPage():
         link = "http://demowebshop.tricentis.com/login"
         page = LoginPage(browser, link)
         page.open()
-        page.login_user(User.EMAIL, User.PASSWORD)
+        Email = User.EMAIL
+        Password = User.PASSWORD
+        page.login_user(Email, Password)
         page.should_be_user_page()

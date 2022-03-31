@@ -1,26 +1,25 @@
 import pytest
-
+import random
+from data.CreateUser import User
 from pages.LoginPage import LoginPage
+from pages.RegisterPage import RegisterPage
 
 
 class TestChangePasswordFromUserPage():
 
     @pytest.fixture(scope="function", autouse=True)
-    def setup_class(self, browser):
-        link = "http://demowebshop.tricentis.com/login"
-        page = LoginPage(browser, link)
+    def setup(self, browser):
+        link = "http://demowebshop.tricentis.com/register"
+        page = RegisterPage(browser, link)
         page.open()
-        Email = "Test1@fakemail.org"
-        Password = "112233441"
-        page.login_user(Email, Password)
-        page.should_be_user_page()
+        page.register_new_faker_user(User)
 
-    def test_user_cant_change_password(self, browser):
+    def test_user_can_change_password(self, browser):
         link = "http://demowebshop.tricentis.com/"
         page = LoginPage(browser, link, 10)
         page.open()
-        old_password = "112233441"
-        new_password = "1122334411"
-        confirm_password = "1122334411"
+        old_password = User.PASSWORD
+        new_password = random.randint(100000, 999999)
+        confirm_password = new_password
         page.change_password(old_password, new_password, confirm_password)
         page.should_be_change_password()

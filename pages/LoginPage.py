@@ -4,12 +4,9 @@ from .locators import UserPageLocators, LoginPageLocators, BasePageLocators
 
 class LoginPage(BasePage):
     def login_user(self, Email, Password):
-        user_Email = self.browser.find_element(*LoginPageLocators.EMAIL)
-        user_Email.send_keys(Email)
-        user_Password = self.browser.find_element(*LoginPageLocators.PASSWORD)
-        user_Password.send_keys(Password)
-        button_login = self.browser.find_element(*LoginPageLocators.LOGIN_SUBMIT)
-        button_login.click()
+        self.browser.find_element(*LoginPageLocators.EMAIL).send_keys(Email)
+        self.browser.find_element(*LoginPageLocators.PASSWORD).send_keys(Password)
+        self.browser.find_element(*LoginPageLocators.LOGIN_SUBMIT).click()
 
     def change_password(self, old_password, new_password, confirm_password):
         user_page = self.browser.find_element(*BasePageLocators.USER_LINK)
