@@ -37,5 +37,6 @@ class TestUserFaker:
 
 
 User = TestUserFaker(TestUserFaker.GENDER, TestUserFaker.FIRST_NAME, TestUserFaker.LAST_NAME, TestUserFaker.EMAIL, TestUserFaker.PASSWORD, TestUserFaker.CONFIRM_PASSWORD)
-
-
+UserWithoutGender = TestUserFaker("", TestUserFaker.FIRST_NAME, TestUserFaker.LAST_NAME, TestUserFaker.EMAIL, TestUserFaker.PASSWORD, TestUserFaker.CONFIRM_PASSWORD)
+UserWithoutRequiredFields = TestUserFaker(TestUserFaker.GENDER, "", TestUserFaker.LAST_NAME, TestUserFaker.EMAIL, TestUserFaker.PASSWORD, TestUserFaker.CONFIRM_PASSWORD)
+UserPasswordIsLess6Symbols = TestUserFaker(TestUserFaker.GENDER, TestUserFaker.FIRST_NAME, TestUserFaker.LAST_NAME, TestUserFaker.EMAIL, "111", "111")

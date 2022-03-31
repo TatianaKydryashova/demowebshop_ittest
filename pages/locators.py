@@ -18,6 +18,8 @@ class RegisterPageLocators():
     CONFIRM_PASSWORD = (By.ID, "ConfirmPassword")
     REGISTER_SUBMIT = (By.ID, "register-button")
     RESULT = (By.CLASS_NAME, "result")
+    ERROR_REGISTER_NAME = (By.CSS_SELECTOR, "[for='FirstName']")
+    ERROR_REGISTER_PASSWORD = (By.CSS_SELECTOR, "[for='Password']")
 
 
 class LoginPageLocators():

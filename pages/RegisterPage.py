@@ -44,5 +44,13 @@ class RegisterPage(BasePage):
         self.user_Confirm_Password(CreateUser.CONFIRM_PASSWORD)
         self.browser.find_element(*RegisterPageLocators.REGISTER_SUBMIT).click()
 
+    def register_new_user_without_gender(self, CreateUser:TestUserFaker):
+        self.user_firstName(CreateUser.FIRST_NAME)
+        self.user_lastName(CreateUser.LAST_NAME)
+        self.user_Email(CreateUser.EMAIL)
+        self.user_Password(CreateUser.PASSWORD)
+        self.user_Confirm_Password(CreateUser.CONFIRM_PASSWORD)
+        self.browser.find_element(*RegisterPageLocators.REGISTER_SUBMIT).click()
+
 
 

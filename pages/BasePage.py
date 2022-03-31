@@ -6,10 +6,9 @@ from .locators import BasePageLocators, RegisterPageLocators, LoginPageLocators,
 
 
 class BasePage():
-    def __init__(self, browser, url, timeout=10):
+    def __init__(self, browser, url):
         self.browser = browser
         self.url = url
-        self.browser.implicitly_wait(timeout)
 
     def open(self):
         self.browser.get(self.url)
@@ -35,6 +34,12 @@ class BasePage():
 
     def should_be_register_user(self):
         assert self.is_element_present(*RegisterPageLocators.RESULT), "probably register user"
+
+    def should_be_error_register_user(self):
+        assert self.is_element_present(*RegisterPageLocators.ERROR_REGISTER_NAME), "First name is required"
+
+    def should_be_error_password_register_user(self):
+        assert self.is_element_present(*RegisterPageLocators.ERROR_REGISTER_PASSWORD), "The password should have at least 6 characters"
 
     def should_be_user_page(self):
         assert self.is_element_present(*BasePageLocators.USER_LINK), "probably login user"
