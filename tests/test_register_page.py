@@ -14,6 +14,7 @@ def test_register_new_user(browser):
     page.should_be_register_user()
 
 
+@pytest.mark.smoke
 def test_register_new_user_with_faker(browser):
     link = "http://demowebshop.tricentis.com/register"
     page = RegisterPage(browser, link)

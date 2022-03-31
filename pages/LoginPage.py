@@ -1,7 +1,10 @@
+import pytest
+
 from .BasePage import BasePage
 from .locators import UserPageLocators, LoginPageLocators, BasePageLocators
 
 
+@pytest.mark.smoke
 class LoginPage(BasePage):
     def login_user(self, Email, Password):
         self.browser.find_element(*LoginPageLocators.EMAIL).send_keys(Email)

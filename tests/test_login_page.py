@@ -15,6 +15,7 @@ def test_login_user(browser):
     page.should_be_user_page()
 
 
+@pytest.mark.smoke
 class TestLoginUserPage():
 
     @pytest.fixture(scope="function", autouse=True)
