@@ -41,6 +41,14 @@ class BasePage():
     def should_be_error_password_register_user(self):
         assert self.is_element_present(*RegisterPageLocators.ERROR_REGISTER_PASSWORD), "The password should have at least 6 characters"
 
+    def should_be_error_login_message(self):
+        assert self.is_element_present(
+            *LoginPageLocators.ERROR_LOGIN_NAME), "Login was unsuccessful. Please correct the errors and try again."
+
+    def should_be_error_change_password(self):
+        assert self.is_element_present(
+            *UserPageLocators.ERROR_CHANGE_PASSWORD), "Login was unsuccessful. Please correct the errors and try again."
+
     def should_be_user_page(self):
         assert self.is_element_present(*BasePageLocators.USER_LINK), "probably login user"
 

@@ -1,7 +1,10 @@
+import pytest
+
 from .BasePage import BasePage
 from .locators import RegisterPageLocators, LoginPageLocators
 
 
+@pytest.mark.smoke
 class MainPage(BasePage):
     def should_be_register_page(self):
         self.should_be_register_url()

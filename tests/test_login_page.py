@@ -33,3 +33,14 @@ class TestLoginUserPage():
         Password = User.PASSWORD
         page.login_user(Email, Password)
         page.should_be_user_page()
+
+    def test_login_without_required_fields(self, browser):
+        link = "http://demowebshop.tricentis.com/login"
+        page = LoginPage(browser, link)
+        page.open()
+        Email = ""
+        Password = User.PASSWORD
+        page.login_user(Email, Password)
+        page.should_be_error_login_message()
+
+

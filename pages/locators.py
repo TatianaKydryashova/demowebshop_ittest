@@ -27,6 +27,7 @@ class LoginPageLocators():
     EMAIL = (By.ID, "Email")
     PASSWORD = (By.ID, "Password")
     LOGIN_SUBMIT = (By.CSS_SELECTOR, "[value='Log in']")
+    ERROR_LOGIN_NAME = (By.CLASS_NAME, "validation-summary-errors")
 
 
 class UserPageLocators():
@@ -37,3 +38,4 @@ class UserPageLocators():
     CONFIRM_PASSWORD = (By.ID, "ConfirmNewPassword")
     CHANGE_PASSWORD_SUBMIT = (By.CSS_SELECTOR, "[value='Change password']")
     CHANGE_PASSWORD_RESULT = (By.CLASS_NAME, 'result')
+    ERROR_CHANGE_PASSWORD = (By.XPATH, '//li[text()="Old password doesn\'t match"]')
