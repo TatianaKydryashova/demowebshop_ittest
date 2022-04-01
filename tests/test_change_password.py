@@ -10,14 +10,12 @@ class TestChangePasswordFromUserPage():
 
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
-        link = "http://demowebshop.tricentis.com/register"
-        page = RegisterPage(browser, link)
+        page = RegisterPage(browser)
         page.open()
         page.register_new_faker_user(User)
 
     def test_user_can_change_password(self, browser):
-        link = "http://demowebshop.tricentis.com/"
-        page = LoginPage(browser, link)
+        page = LoginPage(browser)
         page.open()
         old_password = User.PASSWORD
         new_password = random.randint(100000, 999999)
@@ -26,8 +24,7 @@ class TestChangePasswordFromUserPage():
         page.should_be_change_password()
 
     def test_error_change_password(self, browser):
-        link = "http://demowebshop.tricentis.com/"
-        page = LoginPage(browser, link)
+        page = LoginPage(browser)
         page.open()
         old_password = random.randint(100000, 999999)
         new_password = random.randint(100000, 999999)

@@ -20,14 +20,12 @@ class TestLoginUserPage():
 
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
-        link = "http://demowebshop.tricentis.com/register"
-        page = RegisterPage(browser, link)
+        page = RegisterPage(browser)
         page.open()
         page.register_new_faker_user(User)
 
     def test_login(self, browser):
-        link = "http://demowebshop.tricentis.com/login"
-        page = LoginPage(browser, link)
+        page = LoginPage(browser)
         page.open()
         Email = User.EMAIL
         Password = User.PASSWORD
@@ -35,8 +33,7 @@ class TestLoginUserPage():
         page.should_be_user_page()
 
     def test_login_without_required_fields(self, browser):
-        link = "http://demowebshop.tricentis.com/login"
-        page = LoginPage(browser, link)
+        page = LoginPage(browser)
         page.open()
         Email = ""
         Password = User.PASSWORD

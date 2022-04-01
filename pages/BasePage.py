@@ -3,12 +3,13 @@ from selenium.common.exceptions import NoAlertPresentException, TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 from .locators import BasePageLocators, RegisterPageLocators, LoginPageLocators, UserPageLocators
+from data.URL import URL
 
 
 class BasePage():
-    def __init__(self, browser, url):
+    def __init__(self, browser):
         self.browser = browser
-        self.url = url
+        self.url = URL.BASE_URL
 
     def open(self):
         self.browser.get(self.url)

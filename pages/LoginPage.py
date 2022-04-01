@@ -2,10 +2,16 @@ import pytest
 
 from .BasePage import BasePage
 from .locators import UserPageLocators, LoginPageLocators, BasePageLocators
+from data.URL import URL
 
 
 @pytest.mark.smoke
 class LoginPage(BasePage):
+
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.url = URL.LOGIN_PAGE_URL
+
     def login_user(self, Email, Password):
         self.browser.find_element(*LoginPageLocators.EMAIL).send_keys(Email)
         self.browser.find_element(*LoginPageLocators.PASSWORD).send_keys(Password)

@@ -1,9 +1,14 @@
 from .BasePage import BasePage
 from .locators import RegisterPageLocators, BasePageLocators
 from data.CreateUser import TestUser, TestUserFaker
+from data.URL import URL
 
 
 class RegisterPage(BasePage):
+
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.url = URL.REGISTER_PAGE_URL
 
     def user_Gender(self, value):
         if value == "Male":
