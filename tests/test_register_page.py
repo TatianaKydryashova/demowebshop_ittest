@@ -1,16 +1,6 @@
 import pytest
-from random_word import RandomWords
-
-from data.CreateUser import UserGender, UserWithoutGender, User, UserWithoutRequiredFields, UserPasswordIsLess6Symbols
-from pages.BasePage import BasePage
+from data.CreateUser import UserWithoutGender, User, UserWithoutRequiredFields, UserPasswordIsLess6Symbols
 from pages.RegisterPage import RegisterPage
-
-
-def test_register_new_user(browser):
-    page = RegisterPage(browser)
-    page.open()
-    page.register_new_user(UserGender)
-    page.should_be_register_user()
 
 
 @pytest.mark.smoke

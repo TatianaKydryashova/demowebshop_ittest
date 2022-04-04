@@ -1,7 +1,4 @@
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoAlertPresentException, TimeoutException
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.wait import WebDriverWait
 from .locators import BasePageLocators, RegisterPageLocators, LoginPageLocators, UserPageLocators
 from data.URL import URL
 
@@ -55,4 +52,7 @@ class BasePage():
 
     def should_be_change_password(self):
         assert self.is_element_present(*UserPageLocators.CHANGE_PASSWORD_RESULT), "probably change password"
+
+    def logout(self):
+        self.browser.find_element(*LoginPageLocators.LOG_OUT).click()
 

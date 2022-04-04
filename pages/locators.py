@@ -28,6 +28,7 @@ class LoginPageLocators():
     PASSWORD = (By.ID, "Password")
     LOGIN_SUBMIT = (By.CSS_SELECTOR, "[value='Log in']")
     ERROR_LOGIN_NAME = (By.CLASS_NAME, "validation-summary-errors")
+    LOG_OUT = (By.CSS_SELECTOR, "[href='/logout']")
 
 
 class UserPageLocators():

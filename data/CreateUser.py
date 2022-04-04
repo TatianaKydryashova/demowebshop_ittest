@@ -18,25 +18,27 @@ UserGender = TestUser("Male", "Test6", "Test6", "Test6@mail.ru", "11472589", "11
 
 class TestUserFaker:
 
-    def __init__(self, GENDER, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, CONFIRM_PASSWORD):
-        self.GENDER = GENDER
-        self.FIRST_NAME = FIRST_NAME
-        self.LAST_NAME = LAST_NAME
-        self.EMAIL = EMAIL
-        self.PASSWORD = PASSWORD
-        self.CONFIRM_PASSWORD = CONFIRM_PASSWORD
+    def __init__(self, gender, first_name, last_name, email, password, confirm_password):
+        self.gender = gender
+        self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+        self.password = password
+        self.confirm_password = confirm_password
 
+    seed = random.randint(1, 999999999)
     fake = Faker()
+    Faker.seed(seed)
     gender_lst = ["Male", "Female"]
-    GENDER = random.choice(gender_lst)
-    FIRST_NAME = fake.first_name()
-    LAST_NAME = fake.last_name()
-    EMAIL = fake.email()
-    PASSWORD = random.randint(100000, 999999)
-    CONFIRM_PASSWORD = PASSWORD
+    gender = random.choice(gender_lst)
+    first_name = fake.first_name()
+    last_name = fake.last_name()
+    email = fake.email()
+    password = random.randint(100000, 999999)
+    confirm_password = password
 
 
-User = TestUserFaker(TestUserFaker.GENDER, TestUserFaker.FIRST_NAME, TestUserFaker.LAST_NAME, TestUserFaker.EMAIL, TestUserFaker.PASSWORD, TestUserFaker.CONFIRM_PASSWORD)
-UserWithoutGender = TestUserFaker("", TestUserFaker.FIRST_NAME, TestUserFaker.LAST_NAME, TestUserFaker.EMAIL, TestUserFaker.PASSWORD, TestUserFaker.CONFIRM_PASSWORD)
-UserWithoutRequiredFields = TestUserFaker(TestUserFaker.GENDER, "", TestUserFaker.LAST_NAME, TestUserFaker.EMAIL, TestUserFaker.PASSWORD, TestUserFaker.CONFIRM_PASSWORD)
-UserPasswordIsLess6Symbols = TestUserFaker(TestUserFaker.GENDER, TestUserFaker.FIRST_NAME, TestUserFaker.LAST_NAME, TestUserFaker.EMAIL, "111", "111")
+User = TestUserFaker(TestUserFaker.gender, TestUserFaker.first_name, TestUserFaker.last_name, TestUserFaker.email, TestUserFaker.password, TestUserFaker.confirm_password)
+UserWithoutGender = TestUserFaker("", TestUserFaker.first_name, TestUserFaker.last_name, TestUserFaker.email, TestUserFaker.password, TestUserFaker.confirm_password)
+UserWithoutRequiredFields = TestUserFaker(TestUserFaker.gender, "", TestUserFaker.last_name, TestUserFaker.email, TestUserFaker.password, TestUserFaker.confirm_password)
+UserPasswordIsLess6Symbols = TestUserFaker(TestUserFaker.gender, TestUserFaker.first_name, TestUserFaker.last_name, TestUserFaker.email, "111", "111")
