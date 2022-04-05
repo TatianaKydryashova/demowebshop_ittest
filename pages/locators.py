@@ -50,7 +50,8 @@ class BasketPageLocators():
     NAME_BOOK_IN_BASKET_PAGE = (By.CLASS_NAME, 'product-name')
     PRISE_PRODUCT_IN_BASKET_PAGE = (By.CLASS_NAME, 'product-unit-price')
     FINAL_PRISE_PRODUCT_IN_BASKET_PAGE = (By.CLASS_NAME, 'product-subtotal')
-    COUNT_PRODUCT_IN_BASKET_PAGE = (By.CSS_SELECTOR, "[name='itemquantity2337316']")
+    COUNT_PRODUCT_IN_BASKET_PAGE = (By.CSS_SELECTOR, ".qty-input")
+    UPDATE_CART_SUBMIT = (By.NAME, "updatecart")
 
 
 class ProductPageLocators():
@@ -61,4 +62,6 @@ class ProductPageLocators():
     NAME_BOOK_IN_PRODUCT_PAGE = (By.CSS_SELECTOR, "[itemprop='name']")
     PRISE_BOOK_IN_PRODUCT_PAGE = (By.CSS_SELECTOR, "[itemprop='price']")
     NAME_BOOK_IN_PRODUCT_LIST_PAGE = (By.XPATH, '//h2/a')
-    PRISE_BOOK_IN_PRODUCT_LIST_PAGE = (By.CLASS_NAME, 'price actual-price')
+    PRISE_BOOK_IN_PRODUCT_LIST_PAGE = (By.CSS_SELECTOR, '.price.actual-price')
+    SORT_BY = (By.ID, 'products-orderby')
+    SORT_BY_PRICE_LOW_TO_HIGH = (By.CSS_SELECTOR, "[value='http://demowebshop.tricentis.com/books?orderby=10']")

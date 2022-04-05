@@ -25,3 +25,10 @@ def test_changing_the_quantity_of_product_in_the_basket_and_recalculating_the_ba
     page.go_to_product_details()
     page.add_to_basket()
     page.should_be_changing_the_quantity_and_recalculating()
+
+
+def test_sorting(browser):
+    page = ProductPage(browser)
+    page.open()
+    page.go_to_product_list()
+    page.should_be_sorting_price_low_to_high()

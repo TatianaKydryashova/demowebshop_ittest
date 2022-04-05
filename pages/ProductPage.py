@@ -34,13 +34,35 @@ class ProductPage(BasePage):
 
     def should_be_changing_the_quantity_and_recalculating(self):
         self.browser.find_element(*BasePageLocators.BASKET_LINK).click()
-        price = self.browser.find_element(*BasketPageLocators.PRISE_PRODUCT_IN_BASKET_PAGE)
-        print(price.text)
-        final_price = self.browser.find_element(*BasketPageLocators.FINAL_PRISE_PRODUCT_IN_BASKET_PAGE)
-        print(final_price.text)
+        price = self.browser.find_element(*BasketPageLocators.PRISE_PRODUCT_IN_BASKET_PAGE).text
         count = self.browser.find_element(*BasketPageLocators.COUNT_PRODUCT_IN_BASKET_PAGE)
-        #count.send_keys(2)
-        print(count.text)
+        count.clear()
+        count.send_keys(2)
+        self.browser.find_element(*BasketPageLocators.UPDATE_CART_SUBMIT).click()
+        final_price = self.browser.find_element(*BasketPageLocators.FINAL_PRISE_PRODUCT_IN_BASKET_PAGE).text
+        result_prise = float(price) * 2
+        assert round(result_prise) == round(float(final_price)), "Error in price"
+
+    def should_be_sorting_price_low_to_high(self):
+        prise_list = self.browser.find_elements(*ProductPageLocators.PRISE_BOOK_IN_PRODUCT_LIST_PAGE)
+        prise_list_text = []
+        for el in prise_list:
+            element = float(el.text)
+            prise_list_text.append(element)
+        prise_list_text.sort()
+        print(prise_list_text)
+        self.browser.find_element(*ProductPageLocators.SORT_BY).click()
+        self.browser.find_element(*ProductPageLocators.SORT_BY_PRICE_LOW_TO_HIGH).click()
+        prise_list_sort = self.browser.find_elements(*ProductPageLocators.PRISE_BOOK_IN_PRODUCT_LIST_PAGE)
+        prise_list_sort_text = []
+        for el in prise_list_sort:
+            element = float(el.text)
+            prise_list_sort_text.append(element)
+        print(prise_list_sort_text)
+        assert prise_list_text == prise_list_sort_text, "Error in sort"
+
+
+
 
 
 
