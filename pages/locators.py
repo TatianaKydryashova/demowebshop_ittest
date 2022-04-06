@@ -52,6 +52,11 @@ class BasketPageLocators():
     FINAL_PRISE_PRODUCT_IN_BASKET_PAGE = (By.CLASS_NAME, 'product-subtotal')
     COUNT_PRODUCT_IN_BASKET_PAGE = (By.CSS_SELECTOR, ".qty-input")
     UPDATE_CART_SUBMIT = (By.NAME, "updatecart")
+    TERMS_OF_SERVICE_CHECKBOX = (By.ID, 'termsofservice')
+    CHECKOUT_SUBMIT = (By.ID, 'checkout')
+    COUNTRY = (By.ID, 'BillingNewAddress_CountryId')
+    COUNTRY_GERMANY = (By.CSS_SELECTOR, "[value='35']")
+    CONTENT_ALERT = (By.CLASS_NAME, 'content')
 
 
 class ProductPageLocators():
@@ -65,3 +70,12 @@ class ProductPageLocators():
     PRISE_BOOK_IN_PRODUCT_LIST_PAGE = (By.CSS_SELECTOR, '.price.actual-price')
     SORT_BY = (By.ID, 'products-orderby')
     SORT_BY_PRICE_LOW_TO_HIGH = (By.CSS_SELECTOR, "[value='http://demowebshop.tricentis.com/books?orderby=10']")
+
+
+class CheckoutPageLocators():
+    CITY = (By.ID, 'BillingNewAddress_City')
+    ADDRESS = (By.ID, 'BillingNewAddress_Address1')
+    ZIP = (By.ID, 'BillingNewAddress_ZipPostalCode')
+    PHONE = (By.ID, 'BillingNewAddress_PhoneNumber')
+    BILLING_ADDRESS_NEXT_BUTTON = (By.XPATH, '//div[@id="billing-buttons-container"]/input[1]')
+    SHIPPING_ADDRESS_NEXT_BUTTON = (By.XPATH, '//div[@id="shipping-buttons-container"]/input[1]')

@@ -26,8 +26,14 @@ class BasePage():
             WebDriverWait(self.browser, timeout, 1, TimeoutException).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return True
-
         return False
+
+    def element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+        return True
 
     def go_to_register_page(self):
         link = self.browser.find_element(*BasePageLocators.REGISTER_LINK)

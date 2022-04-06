@@ -1,5 +1,15 @@
+from telnetlib import EC
+
+import pytest
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import Select
+from conftest import browser
+from data.CreateAddress import TestAdress
+from data.CreateUser import User
 from pages.BasePage import BasePage
-from .locators import ProductPageLocators, BasketPageLocators, BasePageLocators
+from .RegisterPage import RegisterPage
+from .locators import ProductPageLocators, BasketPageLocators, BasePageLocators, CheckoutPageLocators
 
 
 class ProductPage(BasePage):
@@ -60,6 +70,43 @@ class ProductPage(BasePage):
             prise_list_sort_text.append(element)
         print(prise_list_sort_text)
         assert prise_list_text == prise_list_sort_text, "Error in sort"
+
+    def should_be_add_basket(self):
+        assert self.element_present(*BasketPageLocators.CONTENT_ALERT), "Error add product in basket"
+
+    def user_city(self, value):
+        self.browser.find_element(*CheckoutPageLocators.CITY).send_keys(value)
+
+    def user_address(self, value):
+        self.browser.find_element(*CheckoutPageLocators.ADDRESS).send_keys(value)
+
+    def user_zip(self, value):
+        self.browser.find_element(*CheckoutPageLocators.ZIP).send_keys(value)
+
+    def user_phone(self, value):
+        self.browser.find_element(*CheckoutPageLocators.PHONE).send_keys(value)
+
+    def should_be_billing_address(self, CreateAdress: TestAdress):
+        self.browser.find_element(*BasketPageLocators.TERMS_OF_SERVICE_CHECKBOX).click()
+        self.browser.find_element(*BasketPageLocators.CHECKOUT_SUBMIT).click()
+        select = Select(self.browser.find_element(*BasketPageLocators.COUNTRY))
+        select.select_by_value("2")
+        self.user_city(CreateAdress.city)
+        self.user_address(CreateAdress.address)
+        self.user_zip(CreateAdress.zip)
+        self.user_phone(CreateAdress.phone)
+        self.browser.find_element(*CheckoutPageLocators.BILLING_ADDRESS_NEXT_BUTTON).click()
+
+    def should_be_add_address(self):
+        assert self.element_present(*CheckoutPageLocators.SHIPPING_ADDRESS_NEXT_BUTTON), "Error"
+
+    def should_be_shipping_address(self):
+        self.browser.find_element(*CheckoutPageLocators.SHIPPING_ADDRESS_NEXT_BUTTON).click()
+
+
+
+
+
 
 
 
