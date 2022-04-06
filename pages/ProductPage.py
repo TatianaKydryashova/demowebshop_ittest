@@ -1,8 +1,9 @@
-from telnetlib import EC
-
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import TimeoutException
 import pytest
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
+
 from selenium.webdriver.support.ui import Select
 from conftest import browser
 from data.CreateAddress import TestAdress
@@ -13,6 +14,10 @@ from .locators import ProductPageLocators, BasketPageLocators, BasePageLocators,
 
 
 class ProductPage(BasePage):
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.wait = None
+
     def go_to_product_details(self):
         self.browser.find_element(*ProductPageLocators.BOOKS_LINK).click()
         self.browser.find_element(*ProductPageLocators.BOOK_ITEM).click()
@@ -100,8 +105,33 @@ class ProductPage(BasePage):
     def should_be_add_address(self):
         assert self.element_present(*CheckoutPageLocators.SHIPPING_ADDRESS_NEXT_BUTTON), "Error"
 
-    def should_be_shipping_address(self):
-        self.browser.find_element(*CheckoutPageLocators.SHIPPING_ADDRESS_NEXT_BUTTON).click()
+    def should_be_shipping_address(self, timeout=4):
+        button = WebDriverWait(self.browser, timeout, 1, TimeoutException).until(
+            EC.element_to_be_clickable((By.XPATH, '//div[@id="shipping-buttons-container"]/input[1]')))
+        button.click()
+
+    def should_be_shipping_method(self, timeout=4):
+        button = WebDriverWait(self.browser, timeout, 1, TimeoutException).until(
+            EC.element_to_be_clickable((By.XPATH, '//div[@id="shipping-method-buttons-container"]/input[1]')))
+        button.click()
+
+    def should_be_payment_method(self, timeout=4):
+        button = WebDriverWait(self.browser, timeout, 1, TimeoutException).until(
+            EC.element_to_be_clickable((By.XPATH, '//div[@id="payment-method-buttons-container"]/input[1]')))
+        button.click()
+
+    def should_be_payment_information(self, timeout=4):
+        button = WebDriverWait(self.browser, timeout, 1, TimeoutException).until(
+            EC.element_to_be_clickable((By.XPATH, '//div[@id="payment-info-buttons-container"]/input[1]')))
+        button.click()
+
+    def should_be_confirm_order(self, timeout=4):
+        button = WebDriverWait(self.browser, timeout, 1, TimeoutException).until(
+            EC.element_to_be_clickable((By.XPATH, '//div[@id="confirm-order-buttons-container"]/input[1]')))
+        button.click()
+
+    def should_be_order_form(self):
+        assert self.element_present(*CheckoutPageLocators.ORDER_FORM), "Error"
 
 
 

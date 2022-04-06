@@ -1,4 +1,3 @@
-import time
 
 import pytest
 
@@ -47,7 +46,7 @@ class TestUserOrdering():
         page.open()
         page.register_new_faker_user(User)
 
-    def test_user_cant_ordering(self, browser):
+    def test_user_can_ordering(self, browser):
         page = ProductPage(browser)
         page.open()
         page.go_to_product_details()
@@ -57,4 +56,8 @@ class TestUserOrdering():
         page.should_be_billing_address(Adress)
         page.should_be_add_address()
         page.should_be_shipping_address()
-        #time.sleep(4)
+        page.should_be_shipping_method()
+        page.should_be_payment_method()
+        page.should_be_payment_information()
+        page.should_be_confirm_order()
+        page.should_be_order_form()

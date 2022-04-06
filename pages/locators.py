@@ -79,3 +79,8 @@ class CheckoutPageLocators():
     PHONE = (By.ID, 'BillingNewAddress_PhoneNumber')
     BILLING_ADDRESS_NEXT_BUTTON = (By.XPATH, '//div[@id="billing-buttons-container"]/input[1]')
     SHIPPING_ADDRESS_NEXT_BUTTON = (By.XPATH, '//div[@id="shipping-buttons-container"]/input[1]')
+    SHIPPING_METHOD_NEXT_BUTTON = (By.XPATH, '//div[@id="shipping-method-buttons-container"]/input[1]')
+    PAYMENT_METHOD_NEXT_BUTTON = (By.XPATH, '//div[@id="payment-method-buttons-container"]/input[1]')
+    PAYMENT_INFORMATION_NEXT_BUTTON = (By.XPATH, '//div[@id="payment-info-buttons-container"]/input[1]')
+    CONFIRM_ORDER_NEXT_BUTTON = (By.XPATH, '//div[@id="confirm-order-buttons-container"]/input[1]')
+    ORDER_FORM = (By.XPATH, '//div[@class="title"]/strong')
